@@ -1,0 +1,140 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<title>Login Sample| User Page</title>
+<link rel="canonical" href="http://populur.tk"/>
+  <!-- CSS -->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+  <link rel="stylesheet" href="/css/materialize.min.css">
+  <link rel="stylesheet" href="/css/jquery.dynatable.css">
+  <link href="/css/stylee.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"> 
+  <link href="/css/media-hover-effects.css" type="text/css" rel="stylesheet" media="screen,projection">       
+  <link href="/css/icon-styles.css" type="text/css" rel="stylesheet" media="screen,projection"/>                      
+      <script src="/js/jquery-2.1.4.min.js"></script>
+      <script src="/js/jquery-1.11.3.min.js"></script>                   
+      <script src="/js/modernizr.custom.js"></script>
+      <script src="/js/jquery.idle.js"></script>
+      <script src="/js/jquery.dynatable.js"></script>
+</head>
+<body>
+<div class="navbar-fixed">
+    <nav class="blue accent-2" role="navigation">
+    <div class="nav-wrapper nav">
+      <a id="logo-container"  href="#" class="brand-logo" >Your Site</a>
+      <ul class="right hide-on-med-and-down">
+      <li><a id="navEnt" href="#!" class="white-text" style="font-weight:bold;">Reg Users</a></li>
+      <li><a id="navMus" href="#!" class="white-text" style="font-weight:bold;">Log Users</a></li>
+      <li><a id="navCube" href="#!"><i class="icon fa fa-cubes fa-2x" style="color:white;"></i><b>Signin</b></a></li>
+      </ul>
+
+      <ul id="nav-mobile" class="side-nav">
+        <li><a href="#">Navbar Link</a></li>
+      </ul>
+      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+    </div>
+  </nav>
+</div>   
+  <div id="index-banner" class="parallax-container ">
+      <div class="section no-pad-bot valign-wrapper">
+          <div class="valign">
+              <div class="row">
+                  <div class="col s12">
+                      <table id="my-final-table">
+<thead>
+<th>Username</th>
+<th>Phone Number</th>
+<th>Phone Date</th>
+</thead>
+<tbody>
+</tbody>
+</table>
+                  </div>
+              </div>
+          </div> 
+          
+      </div>
+       <div class="parallax"><img src="/images/hdr_entertainment.jpg" style="height:743px;" alt="Unsplashed background img 1"></div>
+  </div>
+    <script>
+        var token = localStorage.getItem('token')
+        $(document).idle({
+  onIdle: function(){
+    if(token!==null){
+        localStorage.removeItem("token")
+        Materialize.toast("You have been logged out!!")
+        //location.href = "/"
+    } else {
+        console.log("You were never logged in anywy :(")
+    }
+  },
+  idle: 10000
+})        
+    </script>
+    <script>
+        $.ajax({
+            url:"/api/get/log",
+            type:'POST'
+        }).done((result)=>{
+            //create table
+var myRecords = result;
+ $('#my-final-table').dynatable({
+dataset: {
+records: myRecords
+}
+});
+        })
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

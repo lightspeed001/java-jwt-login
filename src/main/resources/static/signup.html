@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+  <title>Login Sample| Jwt All Day</title>
+    <!-- CSS  --> 
+     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">   
+      <link rel="shortcut icon" type="image/x-icon" href="favicon.ico"/>
+    <link rel="stylesheet" href="/css/materialize.css">
+    <link rel="stylesheet" type="text/css" href="/css/font-awesome.min.css">
+   <style type="text/css">
+       .short{
+color: #f44336;
+}
+.weak{
+color: #ff6f00;
+}
+.good{
+color: #1976d2;
+}
+.strong{
+color: #43a047;
+}
+           .alert {
+                padding: 8px 35px 8px 14px; 
+                margin-bottom:2%;
+                   text-shadow: 0 1px 0 rgba(255,255,255,0.5); 
+                   background-color: #fcf8e3; 
+                   border: 1px solid #fbefd6; 
+                   -webkit-border-radius: 4px; 
+                   border-radius: 4px; 
+                   color: #c09853;
+}
+            .alert h1,.alert h2, .alert h3, .alert h4 {margin: 0;}
+            .alert-success {
+                background-color: #dff0d8; 
+                border-color: #d7eac8; 
+                color: #468847;}
+            .alert-danger,.alert-error {
+                background-color: #f2dede; 
+                border-color: #eed4d8; 
+                color: #b94a48;
+            }
+            .alert-info {
+                background-color: #d9edf7; 
+                border-color: #bee9f1; 
+                color: #3a87ad;
+            }
+            .alert-block {
+                padding-top: 14px; 
+                padding-bottom: 14px;
+            }
+            .alert-block > p,.dbootstrap .alert-block > ul {margin-bottom: 0;}
+            .alert-block p + p {margin-top: 5px;}
+    .nav li b {
+    padding: 15px 0;
+    display: none;
+}
+.nav a:hover {
+    color: #fff;
+}
+.nav a:hover i {
+    display: none;
+}
+.nav a:hover b {
+    display: block;
+}
+   .hidd{display:none;}
+  .input-field div.error{
+    position: relative;
+    top: -1rem;
+    left: 0rem;
+    font-size: 0.8rem;
+    color:#FF4081;
+    -webkit-transform: translateY(0%);
+    -ms-transform: translateY(0%);
+    -o-transform: translateY(0%);
+    transform: translateY(0%);
+  }
+  .input-field label.active{
+      width:100%;
+  }
+  .left-alert input[type=text] + label:after, 
+  .left-alert input[type=password] + label:after, 
+  .left-alert input[type=email] + label:after, 
+  .left-alert input[type=url] + label:after, 
+  .left-alert input[type=time] + label:after,
+  .left-alert input[type=date] + label:after, 
+  .left-alert input[type=datetime-local] + label:after, 
+  .left-alert input[type=tel] + label:after, 
+  .left-alert input[type=number] + label:after, 
+  .left-alert input[type=search] + label:after, 
+  .left-alert textarea.materialize-textarea + label:after{
+      left:0px;
+  }
+  .right-alert input[type=text] + label:after, 
+  .right-alert input[type=password] + label:after, 
+  .right-alert input[type=email] + label:after, 
+  .right-alert input[type=url] + label:after, 
+  .right-alert input[type=time] + label:after,
+  .right-alert input[type=date] + label:after, 
+  .right-alert input[type=datetime-local] + label:after, 
+  .right-alert input[type=tel] + label:after, 
+  .right-alert input[type=number] + label:after, 
+  .right-alert input[type=search] + label:after, 
+  .right-alert textarea.materialize-textarea + label:after{
+      right:70px;
+  }
+
+  input {
+    display: block;
+    margin: .5em auto 0em;
+    padding: 0.5em 1em 0.5em 0.7em;
+    width: 100%;
+    border: none;
+    background: rgba(0,0,0,0.05);
+    color: rgba(0,0,0,0.8);
+    font-size: 2em;
+    line-height: 0;
+    transition: all .5s linear;
+}
+
+input:hover, input:focus {
+  outline: 0;
+  transition: all .5s linear;
+  box-shadow: inset 0px 0px 10px #ccc;
+}
+
+meter {
+    /* Reset the default appearance */
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+            
+  margin: 0 auto 1em;
+  width: 100%;
+  height: .5em;
+    
+    /* Applicable only to Firefox */
+  background: none;
+  background-color: rgba(0,0,0,0.1);
+}
+
+meter::-webkit-meter-bar {
+  background: none;
+  background-color: rgba(0,0,0,0.1);
+}
+
+
+
+.feedback {
+  color: #9ab;
+  font-size: 90%;
+  padding: 0 .25em;
+  font-family: Courgette, cursive;
+  margin-top: 1em;
+}
+.hidd {display:none;}
+  </style> 
+  <script>
+                 if(screen.width <= 699){
+                     window.location = '/m/signup'
+                 }
+                 if((navigator.userAgent.match(/iPhone/i)) || (navigator.userAgent.match(/iPod/i))){
+                     window.location = '/m/signup'     
+                 }
+             </script>     
+  </head>
+  <body>
+  
+    <div class="navbar-fixed">
+    <nav class="indigo" role="navigation">
+    <div class="nav-wrapper nav">
+        <a id="logo-container"  href="#" class="brand-logo" >Your Logo</a>
+      <ul class="right hide-on-med-and-down">
+          <li><a id="navLog" href="/home"><i class="icon fa fa-home fa-2x" style="color:white;"></i><b>Home</b></a></li>
+          <li><a id="navInfo" href="/about"><i class="icon fa fa-info-cubes fa-2x" style="color:white;"></i><b>News</b></a></li>
+      </ul>
+
+      <ul id="nav-mobile" class="side-nav">
+        <li><a href="#">Navbar Link</a></li>
+      </ul>
+      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+    </div>
+  </nav>
+</div>    
+          
+<div class="section no-pad-bot">
+      <div class="container">
+      <div id="socialDD" style="margin-top:8%;"><fieldset class="row center">
+        <div class="col s4">
+          <a id="google_B"  class="waves-effect btn-flat btn-large waves-blue yellow"><i class="fa fa-google"></i> </a>
+        </div>
+         <div class="col s4">
+          <a  class="waves-effect btn-flat btn-large waves-grey blue accent-1"><i class="fa fa-twitter "></i> </a>
+        </div>
+         <div class="col s4">
+          <a  class="waves-effect btn-flat btn-large waves-grey blue"><i class="fa fa-facebook-f"></i> </a>
+        </div>
+      </fieldset></div>
+      
+      <br />
+      <div class="row center">
+          <div class="col s3"></div>
+<div class="col s6">
+        <div class="card-panel">
+                        <h4 class="header2">General Information</h4>
+                        <p style="font-style:italic;font-size:small;">**Any details entered here are kept confidential</p>
+                        <!--add .right-alert to show messages right side-->
+                        <div class="row">
+                            <form id="regForm" class="col s12 right-alert">
+                              <div class="row">
+                                  <div class="input-field col s12">
+                                      
+                                    <input id="username_input" type="text" name="username" class="validate">
+                                    <label for="username_input" data-error="Enter correct username" data-success="Perfect!">Username <i class="fa fa-user"></i></label>
+                                  </div>
+                              </div>
+                              
+                                
+                              <div class="row">
+                                <div class="input-field col s12">
+                                  
+                                  <input id="email_input2" name="phone" type="text" class="validate">
+                                  <label for="email_input2" class="" data-error="Please enter valid phone" data-success="I Like it!">phone  <i class="fa fa-phone"></i></label>
+                                </div>
+                              </div>
+
+                              <div class="row">
+                                <div class="input-field col s12">
+                                  
+                                  <input id="password2" type="password" name="password" class="validate">
+                                  <label for="password2" data-success="Good!" data-error="Please enter valid password">Password <i class="fa fa-lock"></i></label>
+    <p id="boxPre" align="center" class="hidd" style="font-size: small;  font-weight: bolder;"></p>
+                                </div>
+                              </div>
+                       
+                              <div id="repPass" class="row hidd">
+                               <div class="input-field col s12">
+                                  <input id="password3" type="password" class="validate">
+                                  <label for="password3">Repeat Password <i class="fa fa-unlock-alt"></i></label>
+                                  <p align="center" id="repPre" style="font-weight:bold;font-style:italic" class="alert-error"></p>
+                                </div>
+                             </div>         
+                             <br />               
+                          <center>
+    
+            </center>
+                             <div class="row">
+                                 <div class="input-field col s12">
+                                  <input id="license" type="checkbox" >
+                                  <label for="license">Accept License Agreement <i class="fa fa-info-circle"></i></label>
+                               
+                                </div>   
+                             </div>                            
+                          <center>
+              <div class='row'>
+                <button id="regButt" class='col s12 btn btn-large waves-effect indigo disabled'><i class="fa fa-send-o left"></i>Submit</button>
+              </div>
+            </center>    
+                              <input class="hidd" type="text" name="cloudId" id="cloudId"/>          
+                            </form>                 
+                        </div>
+                    </div>
+</div>      
+          <div class="col s3"></div>
+      </div>
+                  </div>
+              </div>
+
+   <script src="/js/jquery-3.1.0.js"></script>          
+   <script src="/js/materialize.js"></script>
+  <script src="/js/jquery.cookie.js"></script>
+        <script>
+$(document).ready(function(){  
+$('select').material_select();
+})
+        </script>
+<script type="text/javascript">
+    $(function(){
+               $('#license').on('click',function(){
+        $('#regButt').toggleClass('disabled')
+       })
+    })
+  </script>
+
+<script type="text/javascript">
+  $(function(){
+    $('#socialDD div a').on('click',function(){
+        Materialize.toast('Social sign up is down sowwy!',3000)
+    })
+
+  })
+</script>
+
+<script>
+   $(function(){
+                  var check = function(password) {
+var strength = 0
+if (password.length < 6) {
+$('#boxPre').removeClass()
+$('#boxPre').addClass('short')
+return 'Too short'
+}
+if (password.length > 7) strength += 1
+// If password contains both lower and uppercase characters, increase strength value.
+if (password.match(/([a-z].*[A-Z])|([A-Z].*[a-z])/)) strength += 1
+// If it has numbers and characters, increase strength value.
+if (password.match(/([a-zA-Z])/) && password.match(/([0-9])/)) strength += 1
+// If it has one special character, increase strength value.
+if (password.match(/([!,%,&,@,#,$,^,*,?,_,~])/)) strength += 1
+// If it has two special characters, increase strength value.
+if (password.match(/(.*[!,%,&,@,#,$,^,*,?,_,~].*[!,%,&,@,#,$,^,*,?,_,~])/)) strength += 1
+// Calculated strength value, we can return messages
+// If value is less than 2
+if (strength < 2) {
+$('#boxPre').removeClass()
+$('#boxPre').addClass('weak')
+return 'Not very safe'
+} else if (strength == 2) {
+$('#boxPre').removeClass()
+$('#boxPre').addClass('good')
+return 'Nice'
+} else {
+$('#boxPre').removeClass()
+$('#boxPre').addClass('strong')
+return 'Looks really good'
+}
+}    
+ $('#password2').on('keyup',function(){
+     var dd = $(this).val();
+     console.log(dd)
+     document.getElementById('boxPre').innerHTML = check(dd);
+if($('#boxPre').hasClass('hidd')){
+    $('#boxPre').removeClass('hidd')    
+} else {}
+if($('#repPass').hasClass('hidd')){
+    $('#repPass').removeClass('hidd')    
+}
+        })
+
+$('#password3').on('keyup',function(){
+var vv = document.getElementById('password2').value
+var vvv = document.getElementById('repPre')        
+
+if(this.value===vv){
+if($('#repPre').hasClass('alert-error')){
+    $('#repPre').removeClass('alert-error')
+}
+$('#repPre').addClass('alert-success')
+    
+vvv.innerHTML = 'PASSWORDS MATCH!'
+
+  setTimeout(function(){
+$('#repPass').toggleClass('hidd')
+if(!$('#repPre').hasClass('alert-error')){     
+    if($('#repPre').hasClass('alert-success')){
+    $('#repPre').removeClass('alert-success')       
+    }
+    $('#repPre').addClass('alert-error')
+}
+  },3000) 
+}else{  
+  //$('#repPre').attr('innerHTML','PASSWORDS DO NOT MATCH!')
+  vvv.innerHTML = 'PASSWORDS DO NOT MATCH!'
+
+}
+        })
+            checkU = function(){
+          $.ajax({
+    url:"/rest/reg/testU/"+document.getElementById('username_input').value,
+    type: 'POST',
+    async:false,
+    dataType:'json'
+    }).done(function(r){
+        if(r!==null){
+            if(r.res!==null){
+                ids = r.res;
+                console.log(r)
+            } else {
+                errorMsg('Whoops, Something went wrong!')
+                console.log('res is null')
+            }
+        } else {
+            errorMsg('Whoops, Something went wrong!')
+        }
+    }).fail(function(msg){
+        console.log(msg);
+    })       
+    }
+    
+    
+     checkE = function(){
+          $.ajax({
+    url:"/rest/reg/testE/"+document.getElementById('email_input2').value,
+    type: 'POST',
+    async:false,
+    dataType:'json'
+    }).done(function(r){
+        if(r.res!==null){
+            emm = r.res;
+            console.log(r)
+        } else {
+            errorMsg('Whoops, Something went wrong!')
+        }
+    }).fail(function(msg){
+        console.log(msg);
+    })  
+    }
+         
+             $('#regButt').on('click',function(){
+                var jj = $('#regForm').serialize()
+        console.log(jj)     
+
+                    $.ajax({
+    url:"/api/user/add",
+    type: 'PUT',
+    data:jj
+    }).done(ajaxSuccess).fail(function(msg){
+        errorMsg()
+       regStand.plainOverlay('hide')
+    console.error(msg);
+  });             
+                 
+
+            })
+   })     
+   
+
+    
+            
+</script>
+  </body>
+  </html>

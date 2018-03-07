@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/Article">    
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<title>Login Sample| Jwt All Day</title>
+<link rel="canonical" href="http://populur.tk"/>
+  <!-- CSS -->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+  <link rel="stylesheet" href="/css/materialize.min.css">
+  <link href="/css/stylee.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"> 
+  <link href="/css/media-hover-effects.css" type="text/css" rel="stylesheet" media="screen,projection">       
+  <link href="/css/icon-styles.css" type="text/css" rel="stylesheet" media="screen,projection"/>           
+  <link href="/css/cookieconsent.min.css" type="text/css" rel="stylesheet" media="screen,projection"/>       
+              
+<style type="text/css">
+.no-js #loader{display: none;}
+.js #loader {display: block; position: absolute; left: 100px; top: 0;}
+.se-pre-con {
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	z-index: 9999;
+	background: url(/images/Preloader_3.gif) center no-repeat #fff;
+}
+            #user-location {
+    	   text-decoration: none;
+    }
+      #user-location a:active, a:hover{
+      	 text-decoration: underline;
+      }
+#copyDD	a:link {
+    text-decoration: none;
+}
+
+#copyDD a:visited {
+    text-decoration: none;
+}
+
+#copyDD a:hover {
+    text-decoration: underline;
+}
+
+#copyDD a:active {
+    text-decoration: underline;
+}
+
+.input-field input[type=date]:focus + label,
+    .input-field input[type=text]:focus + label,
+    .input-field input[type=email]:focus + label,
+    .input-field input[type=password]:focus + label {
+      color: #e91e63;
+    }
+
+    .input-field input[type=date]:focus,
+    .input-field input[type=text]:focus,
+    .input-field input[type=email]:focus,
+    .input-field input[type=password]:focus {
+      border-bottom: 2px solid #e91e63;
+      box-shadow: none;
+    }
+    body {
+      display: flex;
+      min-height: 100vh;
+      flex-direction: column;
+    }
+
+    main {
+      flex: 1 0 auto;
+    }
+.search { position: relative; }
+.search input { text-indent: 30px;}
+.search .fa-search { 
+  position: absolute;
+  top: 24px;
+  left: 7px;
+  font-size: 15px;
+}
+   .hidd{
+   display:none;
+}
+                                        
+    .opp{}
+    .alert {
+                padding: 8px 35px 8px 14px; 
+                margin-bottom:2%;
+                   text-shadow: 0 1px 0 rgba(255,255,255,0.5); 
+                   background-color: #fcf8e3; 
+                   border: 1px solid #fbefd6; 
+                   -webkit-border-radius: 4px; 
+                   border-radius: 4px; 
+                   color: #c09853;
+}
+            .alert h1,.alert h2, .alert h3, .alert h4 {margin: 0;}
+            .alert-success {
+                background-color: #dff0d8; 
+                border-color: #d7eac8; 
+                color: #468847;}
+            .alert-danger,.alert-error {
+                background-color: #f2dede; 
+                border-color: #eed4d8; 
+                color: #b94a48;
+            }
+            .alert-info {
+                background-color: #d9edf7; 
+                border-color: #bee9f1; 
+                color: #3a87ad;
+            }
+            .alert-block {
+                padding-top: 14px; 
+                padding-bottom: 14px;
+            }
+            .alert-block > p,.dbootstrap .alert-block > ul {margin-bottom: 0;}
+            .alert-block p + p {margin-top: 5px;}
+
+@font-face {
+      font-family: 'fontello';
+      src: url('/css/font/fontello.eot');
+      src: url('/css/font/fontello.eot') format('embedded-opentype'),
+           url('/css/font/fontello.woff') format('woff'),
+           url('/css/font/fontello.ttf') format('truetype'),
+           url('/css/font/fontello.svg') format('svg');
+      font-weight: normal;
+      font-style: normal;
+    }
+     .the-icons {
+  font-size: 40px;
+  line-height: 24px;
+}
+     
+    .demo-icon
+    {
+      font-family: "fontello";
+      font-style: normal;
+      font-weight: normal;
+      speak: none;
+     
+      display: inline-block;
+      text-decoration: inherit;
+      width: 1em;
+      margin-right: .2em;
+      text-align: center;
+      /* opacity: .8; */
+     
+      /* For safety - reset parent styles, that can break glyph codes*/
+      font-variant: normal;
+      text-transform: none;
+     
+      /* fix buttons height, for twitter bootstrap */
+      line-height: 1em;
+     
+      /* Animation center compensation - margins should be symmetric */
+      /* remove if not needed */
+      margin-left: .2em;
+     
+      /* You can be more comfortable with increased icons size */
+      /* font-size: 120%; */
+     
+      /* Font smoothing. That was taken from TWBS */
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+     
+      /* Uncomment for 3D effect */
+      /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
+    }
+  .nav li b {
+    padding: 15px 0;
+    display: none;
+}
+.nav a:hover {
+    color: #fff;
+}
+.nav a:hover i {
+    display: none;
+}
+.nav a:hover b {
+    display: block;
+}
+</style>
+               <script src="/js/jquery-2.1.4.min.js"></script>
+               <script src="/js/jquery-1.11.3.min.js"></script>    
+               
+                <script src="/js/modernizr.custom.js"></script>
+           
+                <script>
+                    	// Wait for window load
+	$(window).load(function() {
+		// Animate loader off screen
+		$(".se-pre-con").fadeOut("slow");;
+	});
+                </script>
+
+</head>
+<body class="indigo accent">
+    <div class="se-pre-con"></div>
+ <div class="navbar-fixed">
+    <nav class="blue accent-2" role="navigation">
+    <div class="nav-wrapper nav">
+      <a id="logo-container"  href="#" class="brand-logo" >Your Site</a>
+      <ul class="right hide-on-med-and-down">
+      <li><a id="navEnt" href="/users" class="white-text" style="font-weight:bold;">Reg Users</a></li>
+      <li><a id="navMus" href="/admin" class="white-text" style="font-weight:bold;">Log Users</a></li>
+
+      </ul>
+
+      <ul id="nav-mobile" class="side-nav">
+        <li><a href="#">Navbar Link</a></li>
+      </ul>
+      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+    </div>
+  </nav>
+</div>   
+
+  <div id="index-banner" class="parallax-container ">
+    <div class="section no-pad-bot valign-wrapper">
+       <div class=" valign">
+        <div class="row">
+            <!--<div id="h_11" class="col s12"></div>   -->
+     <div id="h_1" class="col s1"></div>       
+     <div id="h_2" class="col s10">  
+            <div class="card-panel">
+             <form id="loginForm">
+                        <div class="row">
+                        <div class='input-field col s12'>
+                          <label for="name">Username <i class="fa fa-user"></i>  </label>            
+            <input type="text" name="username" id="username"/>
+                        </div>
+          </div>
+                          <div class="row">
+                          <div class='input-field col s12'>
+                            <label for="name">Password <i class="fa fa-unlock-alt"></i>  </label>
+           
+            <input name="password" id="password" type="password"/>
+                          </div>
+          </div>
+          <div class=""></div>
+          <div class="row">     
+             </div>     
+                      <div >
+            <fieldset class="row">
+              <div  class="col s6"><a id="logCancButt" class="waves-effect btn-flat btn-large waves-red">Cancel</a></div>
+              <div  class="col s6"><a id="loginButt" class="waves-effect btn-flat btn-large waves-green">Submit</a></div>
+              </fieldset>
+          </div>
+                           <div class="row" >
+                           <div class="col 6"><a id="suB" href="!#"  style="font-size:small;color:red;"><i class='fa fa-user-plus' style="color:red;"></i> Sign Up</a></div>
+                             <div class="col 6"><a id="abB" href="!#" style="font-size:small;color:black;"><i class='fa fa-info-circle' style="color:black;"></i> About</a></div>    
+                           </div>
+
+                             
+                        <pre id="lPre" class="hidd alert alert-error"></pre>
+                       </form>
+            </div>  
+     </div>       
+        <div id="h_3" class="col s1"></div>
+        </div>
+    </div>
+    </div>
+    <div class="parallax"><img src="/images/hdr_entertainment.jpg" style="height:743px;" alt="Unsplashed background img 1"></div>
+  </div>
+
+      <div class="fixed-action-btn" style="bottom: 42px; right: 192px;">
+          <a class="btn-floating btn-large red" href="#!">
+          <i class="fa fa-info-circle"></i>             
+          </a>
+          <ul>
+           <li><a  href="#!" title="News" class="btn-floating red"><i class="fa fa-cubes"></i></a></li>
+            <li><a href ="/signup" title="Sign up" class="btn-floating yellow darken-1"><i class="fa fa-user-circle"></i></a></li>
+            <li><a href ="/about" title="About" class="btn-floating green"><i class="fa fa-info-circle"></i></a></li>       
+          </ul>
+        </div>
+                      
+<footer class="page-footer indigo accent">
+    <div>
+      <div class="row">
+        <div class="col l6 s12">
+         <div title="Code: 0xe800" class="the-icons span3" style="margin-bottom:4%; font-weight:bold">Your Logo Here</div>
+         <p class="grey-text text-lighten-4" style="font-style:italic;">Your Catchy Slogan</p>
+         <div>
+        
+         </div>
+              <div id="linkedin">
+                <script type="IN/Share" data-url="/" data-counter="left"></script>
+            </div>
+   <div id="plus-one">
+                <div class="g-plusone" data-size="medium" data-href="/"></div>
+            </div>
+         <div>
+         
+            <a title="Add to Delicious"  href="/" target="_blank" class="white-text">
+                    <i class="fa fa-delicious"></i> </a>
+            <a title="Add to Stumpleupon"
+               href="/"
+               target="_blank" class="white-text" style="margin-left:1.5%;"><i class="fa fa-stumbleupon"></i></a>
+         </div>
+         
+        </div>
+ <div class="col l1 s12"></div>
+        <div class="col l3 s12" align="right">
+          <h5 class="white-text" style="visibility:hidden;">Connect</h5>
+          <div class="row">
+        <div class="col s4">
+          <div class="icon-block"><a  href="http://twitter.com/"><i style="color:white;" class='fa fa-twitter fa-2x'></i></a></div></div>
+           <div class="col s4">
+    <div class="icon-block"><a href="http://facebook.com/"><i style="color:white;" class='fa fa-facebook fa-2x'></i></a></div>
+ </div>
+  <div class="col s4">
+    <div class="icon-block"><a href="http://twitter.com/"><i style="color:white;" class='fa fa-twitter fa-2x'></i></a></div>
+ </div>   
+          </div>
+          <div class="row ">
+             <div class="col s12 center">
+    <div class="icon-block"></div>
+ </div>
+ <div class="col s12">
+    <div class="icon-block"></div>
+ </div>
+ 
+          </div>
+        </div>
+      </div>
+    </div>     
+
+    <div class="footer-copyright">
+      <div id="copyDD" class="col s12 left"  style="font-weight:bold;font-size:smaller;">
+       <a href="#!" class="blue-text" style="margin-left:0.5em;">&COPY; Your Company Inc.</a> <a  class="white-text" href="/about" style="margin-left:1.3em;">About</a><a  class="white-text" href="/terms" style="margin-left:1.3em;">Terms and Conditions</a> <a  class="white-text" href="/contact" style="margin-left:1.3em;">Contact</a>   <a href="/cookie" style="margin-left:1.3em;" class="white-text">Cookie Policy</a> <a href="/privacy" style="margin-left:1.3em;" class="white-text">Privacy</a> <a  class="white-text" href="http://blog.populur.tk" style="margin-left:1.3em;">Blog</a>  <a href="#!" style="margin-left:1.3em;" class="white-text">Creators</a> <a href="/copyright" style="margin-left:1.3em;" class="white-text">Copyright</a>  <a class="grey-text text-lighten-4" href="http://on.populur.tk" style="margin-left:2em;" id="user-location" >Latest News</a>
+      </div>
+    </div>
+  </footer>
+
+<div id="modal1" class="modal">
+  <div class="modal-content">
+     <form id="loginForm">
+                        <div class="row">
+                        <div class='input-field col s12'>
+                          <label for="name">Username <i class="fa fa-user"></i>  </label>            
+            <input type="text" name="username" id="username"/>
+                        </div>
+          </div>
+                          <div class="row">
+                          <div class='input-field col s12'>
+                            <label for="name">Password <i class="fa fa-unlock-alt"></i>  </label>
+           
+            <input name="password" id="password" type="password"/>
+                          </div>
+          </div>
+          <div class=""></div>
+          <div class="row">     
+             </div>     
+                      <div >
+            <fieldset class="row">
+              <div  class="col s6"><a id="logCancButt" class="waves-effect btn-flat btn-large waves-red">Cancel</a></div>
+              <div  class="col s6"><a id="loginButt" class="waves-effect btn-flat btn-large waves-green">Submit</a></div>
+              </fieldset>
+          </div>
+                           <div class="row" >
+                           <div class="col 6"><a id="suB" href="!#"  style="font-size:small;color:red;"><i class='fa fa-user-plus' style="color:red;"></i> Sign Up</a></div>
+                             <div class="col 6"><a id="abB" href="!#" style="font-size:small;color:black;"><i class='fa fa-info-circle' style="color:black;"></i> About</a></div>    
+                           </div>
+
+                             
+                        <pre id="lPre" class="hidd alert alert-error"></pre>
+                       </form>
+
+  </div>
+</div>
+     
+ <!--  Scripts-->
+  <script src="/js/materialize.js"></script>
+  <script src="/js/init.js"></script>
+  <script src="/js/jquery.cookie.js"></script>        
+  <script type="text/javascript" src="/js/cookieconsent.min.js"></script>
+  <script type="text/javascript" src="/js/scrollProgress.js"></script>
+  
+  <script type="text/javascript">
+    scrollProgress.set({
+    color: '#e0e0e0',
+    height: '12px',
+    bottom: true
+});
+  </script>    
+
+  <script type="text/javascript">
+window.addEventListener("load", function(){
+window.cookieconsent.initialise({
+  "palette": {
+    "popup": {
+      "background": "#000"
+    },
+    "button": {
+      "background": "#f1d600"
+    }
+  }
+})});
+  </script>
+  <script type="text/javascript">
+$(document).ready(function(){
+   $('.modal').modal()
+          $('#ent-link').on('click',function(){
+$('#modal-3').modal('open')
+           })
+                 $('#us-link').on('click',function(){
+$('#modal-4').modal('open')
+           })
+		   
+$('#navCube').on('click',function(){
+$('#modal1').modal('open'); 
+           })
+  })
+  $(function(){
+             $('#loginButt').on('click',function(){
+                var jj = $('#loginForm').serialize();
+        console.log(jj)     
+
+                    $.ajax({
+    url:"/api/user/login",
+    type: 'POST',
+    data:jj
+    }).done(function(response){
+        console.log(response.session_token);
+        localStorage.set('token',response.session_token);
+    }).fail(function(msg){
+        errorMsg()
+       regStand.plainOverlay('hide')
+    console.error(msg);
+  });             
+                 
+            })
+  })
+  </script>
+  </html>

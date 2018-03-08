@@ -21,16 +21,22 @@ public interface CurrentUserRepository extends JpaRepository<CurrentUser, Long>{
    public CurrentUser findByUsername(@Param("username") String username);
    @Query("select u.username from CurrentUser u")
    public List<String> getUsernames();
-   @Query("select u.email from CurrentUser u")
-   public List<String> getEmails();
-   public void setUser(String username, String phoneNumber, String password);
-   @Query("select u.modifiedBy from CurrentUser u where u.modifiedBy:=lModified")
+   @Query("select u.phoneNumber from CurrentUser u")
+   public List<String> getPhones();
+   //public void setUser(String username, String phoneNumber, String password);
+   @Query("select u.modifiedBy from CurrentUser u where u.modifiedBy=:lModified")
    public String getLastChange(@Param("lModified") String lModified);
-   @Query("select u from CurrentUser u orderBy u.username desc")
+   @Query("select u from CurrentUser u")
    public List<CurrentUser> getAllUsers();
-   public void setLastLogged(String lastLog);
    //public void save(CurrentUser u);
 }
+
+
+
+
+
+
+
 
 
 

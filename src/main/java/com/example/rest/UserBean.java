@@ -5,6 +5,8 @@
  */
 package com.example.rest;
 
+import com.example.services.DemoNode;
+import com.example.entities.CurrentUser;
 import com.example.securiity.TokenHandler;
 import java.io.IOException;
 import javax.naming.AuthenticationException;
@@ -23,8 +25,12 @@ import java.net.URI;
 import java.util.regex.Pattern;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import com.example.services.UserServ;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import org.joda.time.DateTime;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.security.core.userdetails.User;
@@ -36,9 +42,10 @@ import org.springframework.security.core.userdetails.User;
 public class UserBean {
 
  private Log logger = LogFactory.getLog(UserBean.class);        
- @Autowired private UserServ deets;
+  @Autowired private UserServ deets;
   @Autowired private BCryptPasswordEncoder encoder;
   @Autowired private TokenHandler tokenHandler;
+  @Autowired private DemoNode node;
    
          @RequestMapping(value = { "/api/user/login" }, method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
          public ResponseEntity JTest(HttpServletRequest request, HttpServletResponse response)throws AuthenticationException, IOException, ServletException {
@@ -64,7 +71,7 @@ public class UserBean {
          
          @RequestMapping(value = { "/hello" }, method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
          public ResponseEntity JHello(HttpServletRequest request, HttpServletResponse response){
-         return null;
+         return new ResponseEntity("Hello World",HttpStatus.ACCEPTED);
          }
          
          @RequestMapping(value = { "/api/user/add" }, method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -72,32 +79,143 @@ public class UserBean {
          String username = request.getParameter("username");
          String password = request.getParameter("password");
          String number = request.getParameter("phone");
-         logger.info(username+""+password+""+number);
+         //logger.info(username+""+password+""+number);
          
-         return new ResponseEntity("Yaas",HttpStatus.ACCEPTED);
+         CurrentUser uu = new CurrentUser();
+         uu.setUsername(username);
+         uu.setPassword(encoder.encode(password));
+         uu.setPhoneNumber(number);
+         uu.getRoles().add("ROLE_USER");
+         uu.setLastSearch(new DateTime().toDate());
+         
+         Object o = deets.save(uu);
+         return new ResponseEntity("Registration Successful",HttpStatus.ACCEPTED);
          }
          
          @RequestMapping(value = { "/reg/testE" }, method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
          public ResponseEntity JTestE(HttpServletRequest request, HttpServletResponse response){
-         return null;
+         return new ResponseEntity(deets.getPhones(),HttpStatus.ACCEPTED);
          }
          
          @RequestMapping(value = { "/api/user/logout" }, method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
          public ResponseEntity JTestOut(HttpServletRequest request, HttpServletResponse response){
+             User uu = tokenHandler.parseUserFromToken("token");
+             CurrentUser u = deets.findByUsername(uu.getUsername());
+             Object o = deets.save(u);
          return new ResponseEntity("Logout Successful",HttpStatus.ACCEPTED);
          }
          
          @RequestMapping(value = { "/api/users" }, method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
          public ResponseEntity JTestUsers(HttpServletRequest request, HttpServletResponse response){
-         return null;
+             List<CurrentUser> users = deets.getAllUsers();
+             List<ObjectNode> ll = new ArrayList<>(); 
+             for(CurrentUser u: users){
+             ObjectNode o = node.getNode();
+             o.put("id",u.getId());
+             o.put("phone",u.getPhoneNumber()); 
+             ll.add(o);
+             }
+             Map mm = new HashMap<>();
+             mm.put("users",ll);
+         return new ResponseEntity(mm,HttpStatus.ACCEPTED);
          }
             
          @RequestMapping(value = { "/reg/testU" }, method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
          public ResponseEntity JTestU(HttpServletRequest request, HttpServletResponse response){
-         return null;
+         return new ResponseEntity(deets.getUsernames(),HttpStatus.ACCEPTED);
          }
             
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

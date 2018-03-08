@@ -30,18 +30,31 @@ public class UserServ {
     return repo.getUsernames();
     }
     
-    public List<String> getEmails(){
-    return repo.getEmails();   
-    }
-    
-    public void setLastLogged(String lastLog){
-    repo.setLastLogged(lastLog);
+    public List<String> getPhones(){
+    return repo.getPhones();   
     }
     
     public User loadUserByUsername(String username){
     return serv.loadUserByUsername(username); 
     }
+    
+    public CurrentUser findByUsername(String username){
+    return repo.findByUsername(username);
+    }
+    
+    public Object save(CurrentUser uu){
+    return repo.save(uu);
+    }
 }
+
+
+
+
+
+
+
+
+
 
 
 

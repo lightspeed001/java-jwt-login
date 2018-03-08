@@ -219,8 +219,8 @@
     <div class="section no-pad-bot valign-wrapper">
        <div class=" valign">
         <div class="row">
-     <div id="h_1" class="col s1"></div>       
-     <div id="h_2" class="col s10">  
+     <div id="h_1" class="col s2"></div>       
+     <div id="h_2" class="col s6">  
             <div class="card-panel">
              <form id="loginForm">
                         <div class="row">
@@ -255,7 +255,7 @@
                        </form>
             </div>  
      </div>       
-        <div id="h_3" class="col s1"></div>
+     <div id="h_3" class="col s2"></div>
         </div>
     </div>
     </div>
@@ -330,43 +330,6 @@
       </div>
     </div>
   </footer>
-
-<div id="modal1" class="modal">
-  <div class="modal-content">
-     <form id="loginForm">
-                        <div class="row">
-                        <div class='input-field col s12'>
-                          <label for="name">Username <i class="fa fa-user"></i>  </label>            
-            <input type="text" name="username" id="username"/>
-                        </div>
-          </div>
-                          <div class="row">
-                          <div class='input-field col s12'>
-                            <label for="name">Password <i class="fa fa-unlock-alt"></i>  </label>
-           
-            <input name="password" id="password" type="password"/>
-                          </div>
-          </div>
-          <div class=""></div>
-          <div class="row">     
-             </div>     
-                      <div >
-            <fieldset class="row">
-              <div  class="col s6"><a id="logCancButt" class="waves-effect btn-flat btn-large waves-red">Cancel</a></div>
-              <div  class="col s6"><a id="loginButt" class="waves-effect btn-flat btn-large waves-green">Submit</a></div>
-              </fieldset>
-          </div>
-                           <div class="row" >
-                           <div class="col 6"><a id="suB" href="!#"  style="font-size:small;color:red;"><i class='fa fa-user-plus' style="color:red;"></i> Sign Up</a></div>
-                             <div class="col 6"><a id="abB" href="!#" style="font-size:small;color:black;"><i class='fa fa-info-circle' style="color:black;"></i> About</a></div>    
-                           </div>
-
-                             
-                        <pre id="lPre" class="hidd alert alert-error"></pre>
-                       </form>
-
-  </div>
-</div>
      
  <!--  Scripts-->
   <script src="/js/materialize.js"></script>
@@ -415,16 +378,18 @@ $('#modal1').modal('open');
                 var jj = $('#loginForm').serialize();
         console.log(jj)     
 
-                    $.ajax({
+$.ajax({
     url:"/api/user/login",
     type: 'POST',
     data:jj
     }).done(function(response){
-        console.log(response.session_token);
-        localStorage.set('token',response.session_token);
+        Materialize.toast('Sowwy Error!!');            
+        console.log(response.token);
+        localStorage.set('token',response.token);
+        location.href = "/users"
     }).fail(function(msg){
-        errorMsg()
-       regStand.plainOverlay('hide')
+   Materialize.toast('Sowwy Error!!');            
+   $('#loginForm')[0].reset();
     console.error(msg);
   });             
                  

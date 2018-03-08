@@ -76,9 +76,9 @@
     <script>
         $(function(){
             var token = localStorage.getItem('token')
-        if(token!==null){
-                  $.ajax({
-            url:"/api/get/log",
+        if(token !== null){
+$.ajax({
+            url:"/api/users",
             type:'POST'
         }).done((result)=>{
             //create table
@@ -101,6 +101,11 @@ records: myRecords
     </script>
 </body>
 </html>
+
+
+
+
+
 
 
 

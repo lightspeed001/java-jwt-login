@@ -34,6 +34,7 @@ import org.joda.time.DateTime;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.security.core.userdetails.User;
+import org.springframework.web.bind.annotation.PathVariable;
 /**
  *
  * @author Kazzy Rantsimele <kazzytheman345@gmail.com>
@@ -97,9 +98,9 @@ public class UserBean {
          return new ResponseEntity(deets.getPhones(),HttpStatus.ACCEPTED);
          }
          
-         @RequestMapping(value = { "/api/user/logout" }, method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-         public ResponseEntity JTestOut(HttpServletRequest request, HttpServletResponse response){
-             User uu = tokenHandler.parseUserFromToken("token");
+         @RequestMapping(value = { "/api/user/logout/{id}" }, method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+         public ResponseEntity JTestOut(HttpServletRequest request, HttpServletResponse response,@PathVariable Long id){
+             User uu = tokenHandler.parseUserFromToken(request.getParameter("token"));
              CurrentUser u = deets.findByUsername(uu.getUsername());
              Object o = deets.save(u);
          return new ResponseEntity("Logout Successful",HttpStatus.ACCEPTED);
@@ -126,6 +127,10 @@ public class UserBean {
          }
             
 }
+
+
+
+
 
 
 

@@ -409,10 +409,11 @@ if(!$('#repPre').hasClass('alert-error')){
     url:"/api/user/add",
     type: 'PUT',
     data:jj
-    }).done(ajaxSuccess).fail(function(msg){
-        errorMsg()
-       regStand.plainOverlay('hide')
-    console.error(msg);
+    }).done(function(response){
+        Materialize.toast('Signup success!!');
+    }).fail(function(msg){
+        Materialize.toast('Sowwy Error!!');
+        console.error(msg);
   });             
                  
 

@@ -125,15 +125,17 @@ public class CurrentUser {
     this.lastLog = lastLog;
     }
     
+    public Date getLastSearch(){
+       return this.lastSearch;
+    }
+        
     public void setLastSearch(Date lastSearch){
         this.lastSearch = lastSearch;
     }
-        
-    public Date getLastSearch(){
-       return this.lastSearch;
-    }    
-
 }
+
+
+
 
 
 

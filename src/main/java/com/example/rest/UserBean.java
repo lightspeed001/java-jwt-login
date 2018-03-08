@@ -56,11 +56,15 @@ public class UserBean {
          if(user!=null){         
              Map mm = new HashMap<>();
              mm.put("session_token","this is the session token");         
-         User uu = deets.loadUserByUsername(user);
+             User uu = deets.loadUserByUsername(user);
            if(encoder.matches(pwd,uu.getPassword())){
             String token = tokenHandler.createTokenForUser(uu);
-           mm.put("id","id");
+            CurrentUser cu = deets.findByUsername(uu.getUsername());
+            cu.setlastLog(new DateTime().toDate());
+            
+           mm.put("id",cu.getId());
            mm.put("session_token",token);
+           
            return new ResponseEntity(mm,HttpStatus.ACCEPTED);
            } else {
              return new ResponseEntity("Ehhh wrong",HttpStatus.BAD_REQUEST);
@@ -127,6 +131,21 @@ public class UserBean {
          }
             
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

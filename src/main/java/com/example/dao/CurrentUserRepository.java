@@ -18,7 +18,7 @@ import java.util.List;
 public interface CurrentUserRepository extends JpaRepository<CurrentUser, Long>{
     
    @Query("select u from CurrentUser u where u.username=:username")
-   public Optional<CurrentUser> findByUsername(@Param("username") String username);
+   public CurrentUser findByUsername(@Param("username") String username);
    @Query("select u.username from CurrentUser u")
    public List<String> getUsernames();
    @Query("select u.email from CurrentUser u")
@@ -29,8 +29,13 @@ public interface CurrentUserRepository extends JpaRepository<CurrentUser, Long>{
    @Query("select u from CurrentUser u orderBy u.username desc")
    public List<CurrentUser> getAllUsers();
    public void setLastLogged(String lastLog);
-   public void setCurrentUser(CurrentUser u);
+   //public void save(CurrentUser u);
 }
+
+
+
+
+
 
 
 

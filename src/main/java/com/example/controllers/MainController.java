@@ -24,16 +24,20 @@ public class MainController {
         return "/user";
     }
     
-     @GetMapping("/about")
-    public String about() {
-        return "/about";
+       @GetMapping("/signup")
+    public String signUp() {
+        return "/signup";
     }
-
+    
     @GetMapping("/403")
     public String error403() {
         return "/error/403";
     }
 }
+
+
+
+
 
 
 

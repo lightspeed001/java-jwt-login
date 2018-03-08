@@ -5,6 +5,7 @@
  */
 package com.example.rest;
 
+import com.example.securiity.TokenHandler;
 import java.io.IOException;
 import javax.naming.AuthenticationException;
 import javax.servlet.ServletException;
@@ -32,11 +33,12 @@ import org.springframework.security.core.userdetails.User;
  * @author Kazzy Rantsimele <kazzytheman345@gmail.com>
  */
 @RestController
-
 public class UserBean {
 
  private Log logger = LogFactory.getLog(UserBean.class);        
  @Autowired private UserServ deets;
+  @Autowired private BCryptPasswordEncoder encoder;
+  @Autowired private TokenHandler tokenHandler;
    
          @RequestMapping(value = { "/api/user/login" }, method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
          public ResponseEntity JTest(HttpServletRequest request, HttpServletResponse response)throws AuthenticationException, IOException, ServletException {
@@ -46,17 +48,15 @@ public class UserBean {
          if(user!=null){         
              Map mm = new HashMap<>();
              mm.put("session_token","this is the session token");         
-          /** User uu = deets.loadUserByUsername(user);
+         User uu = deets.loadUserByUsername(user);
            if(encoder.matches(pwd,uu.getPassword())){
-            String token = tokenHandler.createTokenForUser(uu);**/ 
-               /**HttpHeaders responseHeaders = new HttpHeaders();
-               responseHeaders.set(AUTH_HEADER_NAME, token);   **/ 
-             /**  return new ResponseEntity("Good",responseHeaders,HttpStatus.ACCEPTED);
+            String token = tokenHandler.createTokenForUser(uu);
+           mm.put("id","id");
+           mm.put("session_token",token);
+           return new ResponseEntity(mm,HttpStatus.ACCEPTED);
            } else {
              return new ResponseEntity("Ehhh wrong",HttpStatus.BAD_REQUEST);
-           }***/
-             return new ResponseEntity(mm,HttpStatus.ACCEPTED);
-           
+           }
          } else {
               return new ResponseEntity("Ehhh wrong",HttpStatus.BAD_REQUEST);
          }    
@@ -84,7 +84,7 @@ public class UserBean {
          
          @RequestMapping(value = { "/api/user/logout" }, method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
          public ResponseEntity JTestOut(HttpServletRequest request, HttpServletResponse response){
-         return null;
+         return new ResponseEntity("Logout Successful",HttpStatus.ACCEPTED);
          }
          
          @RequestMapping(value = { "/api/users" }, method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -98,6 +98,25 @@ public class UserBean {
          }
             
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

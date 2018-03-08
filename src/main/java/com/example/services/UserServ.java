@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import com.example.entities.CurrentUser;
+import com.example.securiity.UserDetailSevice;
+import org.springframework.security.core.userdetails.User;
 
 /**
  *
@@ -18,6 +20,7 @@ import com.example.entities.CurrentUser;
 @Service
 public class UserServ {
     @Autowired CurrentUserRepository repo;
+    @Autowired UserDetailSevice serv;
     
     public List<CurrentUser> getAllUsers(){
     return repo.getAllUsers();
@@ -30,7 +33,27 @@ public class UserServ {
     public List<String> getEmails(){
     return repo.getEmails();   
     }
+    
+    public void setLastLogged(String lastLog){
+    repo.setLastLogged(lastLog);
+    }
+    
+    public User loadUserByUsername(String username){
+    return serv.loadUserByUsername(username); 
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

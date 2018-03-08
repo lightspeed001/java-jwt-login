@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
@@ -8,7 +8,7 @@
      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">   
       <link rel="shortcut icon" type="image/x-icon" href="favicon.ico"/>
     <link rel="stylesheet" href="/css/materialize.css">
-    <link rel="stylesheet" type="text/css" href="/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"> 
    <style type="text/css">
        .short{
 color: #f44336;
@@ -158,14 +158,6 @@ meter::-webkit-meter-bar {
 }
 .hidd {display:none;}
   </style> 
-  <script>
-                 if(screen.width <= 699){
-                     window.location = '/m/signup'
-                 }
-                 if((navigator.userAgent.match(/iPhone/i)) || (navigator.userAgent.match(/iPod/i))){
-                     window.location = '/m/signup'     
-                 }
-             </script>     
   </head>
   <body>
   
@@ -175,7 +167,7 @@ meter::-webkit-meter-bar {
         <a id="logo-container"  href="#" class="brand-logo" >Your Logo</a>
       <ul class="right hide-on-med-and-down">
           <li><a id="navLog" href="/home"><i class="icon fa fa-home fa-2x" style="color:white;"></i><b>Home</b></a></li>
-          <li><a id="navInfo" href="/about"><i class="icon fa fa-info-cubes fa-2x" style="color:white;"></i><b>News</b></a></li>
+          <li><a id="navInfo" href="/users"><i class="icon fa fa-info-cubes fa-2x" style="color:white;"></i><b>News</b></a></li>
       </ul>
 
       <ul id="nav-mobile" class="side-nav">

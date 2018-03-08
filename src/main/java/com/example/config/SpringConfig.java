@@ -19,7 +19,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
  * @author Kazzy Rantsimele <kazzytheman345@gmail.com>
  */
 @Configuration
-//@EnableWebSecurity
 public class SpringConfig extends WebSecurityConfigurerAdapter{
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -29,8 +28,9 @@ public class SpringConfig extends WebSecurityConfigurerAdapter{
                 .antMatchers("/hello").permitAll()
                 .antMatchers("/api/**").permitAll()
                 .antMatchers("/users").permitAll()
+                .antMatchers("/signup").permitAll()
                 .antMatchers("/admin/**").permitAll()
-                .antMatchers("/user/**").hasAnyRole("USER")
+                .antMatchers("/users/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
@@ -48,6 +48,9 @@ public class SpringConfig extends WebSecurityConfigurerAdapter{
     
  
 }
+
+
+
 
 
 

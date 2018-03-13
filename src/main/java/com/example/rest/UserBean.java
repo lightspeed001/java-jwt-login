@@ -83,8 +83,7 @@ public class UserBean {
          public ResponseEntity JSignup(HttpServletRequest request, HttpServletResponse response){
          String username = request.getParameter("username");
          String password = request.getParameter("password");
-         String number = request.getParameter("phone");
-         //logger.info(username+""+password+""+number);
+         String number = request.getParameter("phone");         
          
          CurrentUser uu = new CurrentUser();
          uu.setUsername(username);
@@ -124,6 +123,20 @@ public class UserBean {
              mm.put("users",ll);
          return new ResponseEntity(mm,HttpStatus.ACCEPTED);
          }
+
+          @RequestMapping(value = {"/api/users/logged"}, method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+          public ResponseEntity JUsersLogged(HttpServletRequest request, HttpServletResponse response){
+              List aa = new ArrayList<>();
+              DateTime dd = new DateTime();
+              List<CurrentUser> ll = deets.getAllUsersLogged(dd.toDate(),dd.minusMinutes(5).toDate());
+              for(CurrentUser u : ll){
+             ObjectNode o = node.getNode();
+             o.put("id",u.getId());
+             o.put("phone",u.getPhoneNumber()); 
+             aa.add(o);    
+              } 
+          return new ResponseEntity(aa,HttpStatus.ACCEPTED);
+          }
             
          @RequestMapping(value = { "/reg/testU" }, method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
          public ResponseEntity JTestU(HttpServletRequest request, HttpServletResponse response){
@@ -131,186 +144,6 @@ public class UserBean {
          }
             
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

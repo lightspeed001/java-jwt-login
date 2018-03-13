@@ -3,11 +3,11 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
-  <title>Login Sample| Jwt All Day</title>
+  <title>Login Sample| Example</title>
     <!-- CSS  --> 
      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">   
       <link rel="shortcut icon" type="image/x-icon" href="favicon.ico"/>
-    <link rel="stylesheet" href="/css/materialize.css">
+    <link rel="stylesheet" href="/css/materialize.min.css">
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"> 
    <style type="text/css">
        .short{
@@ -164,7 +164,7 @@ meter::-webkit-meter-bar {
     <div class="navbar-fixed">
     <nav class="indigo" role="navigation">
     <div class="nav-wrapper nav">
-        <a id="logo-container"  href="#" class="brand-logo" >Your Logo</a>
+        <a id="logo-container"  href="#" class="brand-logo" >Example</a>
       <ul class="right hide-on-med-and-down">
           <li><a id="navLog" href="/home"><i class="icon fa fa-home fa-2x" style="color:white;"></i><b>Home</b></a></li>
           <li><a id="navInfo" href="/users"><i class="icon fa fa-info-cubes fa-2x" style="color:white;"></i><b>News</b></a></li>
@@ -180,18 +180,7 @@ meter::-webkit-meter-bar {
           
 <div class="section no-pad-bot">
       <div class="container">
-      <div id="socialDD" style="margin-top:8%;"><fieldset class="row center">
-        <div class="col s4">
-          <a id="google_B"  class="waves-effect btn-flat btn-large waves-blue yellow"><i class="fa fa-google"></i> </a>
-        </div>
-         <div class="col s4">
-          <a  class="waves-effect btn-flat btn-large waves-grey blue accent-1"><i class="fa fa-twitter "></i> </a>
-        </div>
-         <div class="col s4">
-          <a  class="waves-effect btn-flat btn-large waves-grey blue"><i class="fa fa-facebook-f"></i> </a>
-        </div>
-      </fieldset></div>
-      
+      <div id="socialDD" style="margin-top:8%;"></div>      
       <br />
       <div class="row center">
           <div class="col s3"></div>
@@ -215,7 +204,7 @@ meter::-webkit-meter-bar {
                                 <div class="input-field col s12">
                                   
                                   <input id="email_input2" name="phone" type="text" class="validate">
-                                  <label for="email_input2" class="" data-error="Please enter valid phone" data-success="I Like it!">phone  <i class="fa fa-phone"></i></label>
+                                  <label for="email_input2" class="" data-error="Please enter valid phone" data-success="I Like it!">Phone  <i class="fa fa-phone"></i></label>
                                 </div>
                               </div>
 
@@ -382,6 +371,22 @@ if(!$('#repPre').hasClass('alert-error')){
     })       
     }
     
+var logFunc = function(){
+if(arrsNum===0){
+		var jj = $('#regForm').serialize()
+        console.log(jj)
+$.ajax({
+    url:"/api/user/add",
+    type: 'PUT',
+    data:jj
+    }).done(function(response){
+        Materialize.toast('Signup success!!');
+    }).fail(function(msg){
+        Materialize.toast('Sowwy Error!!');
+        console.error(msg);
+  });   
+			 } else {Materialize.toast('Sowwy, Please complete the form!');}
+}
     
      checkE = function(){
           $.ajax({
@@ -400,28 +405,27 @@ if(!$('#repPre').hasClass('alert-error')){
         console.log(msg);
     })  
     }
-         
-             $('#regButt').on('click',function(){
-                var jj = $('#regForm').serialize()
-        console.log(jj)     
-
-                    $.ajax({
-    url:"/api/user/add",
-    type: 'PUT',
-    data:jj
-    }).done(function(response){
-        Materialize.toast('Signup success!!');
-    }).fail(function(msg){
-        Materialize.toast('Sowwy Error!!');
-        console.error(msg);
-  });             
-                 
-
+   
+         var arrs = ["password2","email_input2","username_input"];
+		 var arrsNum = 0;
+             $('#regButt').on('click',function(ev){			 
+			 ev.stopImmediatePropagation();			 
+			 ev.preventDefault();
+			 arrs.forEach(function(vall, ind){
+			 console.log('vall value is: ',vall);
+			 var vv = document.getElementById(vall).value
+			 if(vv.length===0){			 
+			 ++arrsNum;  
+			 } else {}
+			 /**if(indx===(arrs.length-1){
+			 logFunc();
+			 }**/
+			 if(ind===(arrs.length-1)){
+		     logFunc();
+			 }
+}) 
             })
    })     
-   
-
-    
             
 </script>
   </body>

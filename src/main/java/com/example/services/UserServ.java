@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import com.example.entities.CurrentUser;
 import com.example.securiity.UserDetailSevice;
+import java.util.Date;
 import org.springframework.security.core.userdetails.User;
 
 /**
@@ -45,7 +46,17 @@ public class UserServ {
     public Object save(CurrentUser uu){
     return repo.save(uu);
     }
+    
+    public List<CurrentUser> getAllUsersLogged(Date date1, Date date2){
+    return repo.getAllUsersByLastLogDesc(date1, date2);
+    }
 }
+
+
+
+
+
+
 
 
 

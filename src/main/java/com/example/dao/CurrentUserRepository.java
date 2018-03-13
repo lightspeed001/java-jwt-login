@@ -6,6 +6,7 @@
 package com.example.dao;
 
 import com.example.entities.CurrentUser;
+import java.util.Date;
 import java.util.Optional;
 import org.springframework.data.repository.query.Param;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -28,8 +29,17 @@ public interface CurrentUserRepository extends JpaRepository<CurrentUser, Long>{
    public String getLastChange(@Param("lModified") String lModified);
    @Query("select u from CurrentUser u")
    public List<CurrentUser> getAllUsers();
-   //public void save(CurrentUser u);
+   @Query("select u from CurrentUser u where u.lastLog between :date1 and :date2")
+   public List<CurrentUser> getAllUsersByLastLogDesc(Date date1, Date date2);
 }
+
+
+
+
+
+
+
+
 
 
 
